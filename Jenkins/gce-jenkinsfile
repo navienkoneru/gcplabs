@@ -35,7 +35,7 @@ pipeline {
 	stage('Collect External IP') {
 	 steps {
     
-         sh "gcloud compute instances describe $ACTIONS vm-jenkins --zone us-central1-b --format='get(networkInterfaces[0].accessConfigs[0].natIP)' > ip.txt"
+         sh "gcloud compute instances describe vm-jenkins --zone us-central1-b --format='get(networkInterfaces[0].accessConfigs[0].natIP)' > ip.txt"
 	     sh 'cat ip.txt'
         
     }
