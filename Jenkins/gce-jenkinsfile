@@ -23,7 +23,14 @@ pipeline {
         sh 'gcloud auth activate-service-account jenkins@prjct-navi.iam.gserviceaccount.com --key-file=jenkins.json'
     }
 	}
- 	 
+	
+
+ stage('create-instance') {
+	 steps {
+    
+        sh 'gcloud compute instances $ACTIONS vm-jenkins --zone us-central1-b'
+    }
+	}	 
 	
 stage('list Instance') {
 	 steps {
