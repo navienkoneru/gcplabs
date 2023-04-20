@@ -28,9 +28,26 @@ pipeline {
  stage('create-instance') {
 	 steps {
     
-        sh 'gcloud compute instances $ACTIONS vm-jenkins --zone us-central1-b'
+        sh 'gcloud compute instances $ACTIONS vm-jenkins --zone us-central1-b --tags=http-server --metadata-from-file=startup-script=.script/gce.sh'
     }
 	}	 
+	
+	stage('Collect External IP') {
+	 steps {
+    
+         sh "gcloud compute instances describe $ACTIONS vm-jenkins --zone us-central1-b --format='get(networkInterfaces[0].accessConfigs[0].natIP)' > ip.txt"
+	     sh 'cat ip.txt'
+        
+    }
+    }
+    
+     stage('App health check') {
+	 steps {
+            sh 'sleep 300'
+	    sh 'curl http://$(cat ip.txt)/8080/hello'
+    
+    }
+    }
 	
 stage('list Instance') {
 	 steps {
