@@ -28,7 +28,7 @@ pipeline {
  stage('create-instance') {
 	 steps {
     
-        sh 'gcloud compute instances $ACTIONS vm-jenkins --zone us-central1-b --tags=http-server --metadata-from-file=startup-script=.script/gce.sh'
+        sh 'gcloud compute instances $ACTIONS vm-jenkins --zone us-central1-b --tags=http-server --metadata-from-file=startup-script=./script/gce.sh'
     }
 	}	 
 	
