@@ -1,0 +1,45 @@
+pipeline {
+    agent any
+
+    environment {
+    SVC_ACCOUNT_KEY = credentials('jenkins-auth')
+  }
+     
+    stages {
+      	stage('Set creds') {
+            steps {
+              
+                sh 'echo $SVC_ACCOUNT_KEY | base64 -d > ./jenkins.json'
+		        sh 'pwd'
+                       
+               
+            }
+        }
+
+	
+	stage('Auth-Project') {
+	 steps {
+    
+        sh 'gcloud auth activate-service-account jenkins@prjct-navi.iam.gserviceaccount.com --key-file=jenkins.json'
+    }
+	}
+	
+
+ stage('gke-auth') {
+	 steps {
+    
+        sh 'gcloud container clusters get-credentials mycluster --zone us-central1-c --project prjct-navi'
+    }
+	}	 
+	
+	stage('deploy-pod') {
+	 steps {
+    
+         sh 'kubectl $K8-ACTION -f ./k8s/deploy.yaml'
+        
+    }
+    }
+    
+      
+   }
+}
