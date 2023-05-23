@@ -26,7 +26,7 @@ pipeline {
 	stage('cluster') {
 	steps {
 	
-	sh 'gcloud container clusters $C-ACTION $NAME --zone us-central1-a --num-nodes=1 --project prjct-navi'
+	sh 'gcloud container clusters $CACTION $NAME --zone us-central1-a --num-nodes=1 --project prjct-navi'
 	}
 	   }
 	
