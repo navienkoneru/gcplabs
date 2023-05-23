@@ -26,7 +26,7 @@ pipeline {
 	stage('cluster') {
 	steps {
 	
-	sh 'gcloud container clusters create my-cluster --zone us-central1-a --num-nodes=1 --project prjct-navi'
+	sh 'gcloud container clusters create mycluster --zone us-central1-a --num-nodes=1 --project prjct-navi'
 	}
 	   }
 	
@@ -34,7 +34,7 @@ pipeline {
  stage('gke-auth') {
 	 steps {
     
-        sh 'gcloud container clusters get-credentials mycluster --zone us-central1-c --project prjct-navi'
+        sh 'gcloud container clusters get-credentials mycluster --zone us-central1-a --project prjct-navi'
     }
 	}	 
 	
