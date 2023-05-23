@@ -23,6 +23,12 @@ pipeline {
         sh 'gcloud auth activate-service-account jenkins@prjct-navi.iam.gserviceaccount.com --key-file=jenkins.json'
     }
 	}
+	stage('cluster') {
+	steps {
+	
+	sh 'gcloud container clusters create my-cluster --zone us-central1-a --num-nodes=1 --project prjct-navi'
+	}
+	   }
 	
 
  stage('gke-auth') {
