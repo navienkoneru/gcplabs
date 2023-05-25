@@ -34,7 +34,7 @@ pipeline {
  stage('gke-auth') {
 	 steps {
     
-        sh 'gcloud container clusters get-credentials mycluster --zone us-central1-a --project prjct-navi'
+        sh 'gcloud container clusters get-credentials $AUTHNAME --zone us-central1-a --project prjct-navi'
     }
 	}	 
 	
