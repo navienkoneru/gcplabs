@@ -29,23 +29,7 @@ pipeline {
 	sh 'gcloud container clusters delete mycluster --zone us-central1-a -q --project prjct-navi'
 	}
 	   }
-	
-
- stage('gke-auth') {
-	 steps {
-    
-        sh 'gcloud container clusters get-credentials mycluster --zone us-central1-a --project prjct-navi'
-    }
-	}	 
-	
-	stage('deploy-pod') {
-	 steps {
-    
-         sh 'kubectl delete -f ./k8s/deploy.yaml'
-        
-    }
-    }
-    
+	    
       
    }
 }
