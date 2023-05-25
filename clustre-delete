@@ -26,7 +26,7 @@ pipeline {
 	stage('cluster') {
 	steps {
 	
-	sh 'gcloud container clusters delete mycluster --zone us-central1-a -q --project prjct-navi'
+	sh 'gcloud container clusters delete $NAME1 --zone us-central1-a -q --project prjct-navi'
 	}
 	   }
 	    
