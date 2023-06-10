@@ -41,7 +41,7 @@ pipeline {
 		 steps {  
 			  dir('terraform/gce')
 			 {
-                sh 'terraform apply --auto-approve -var-file=dev.tfvars'
+                sh 'terraform $NAVEEN_ACTION --auto-approve -var-file=dev.tfvars'
 			 }
 		 }
 	 }
