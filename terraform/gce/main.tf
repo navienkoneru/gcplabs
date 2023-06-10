@@ -1,7 +1,7 @@
 provider "google" {
   project     = var.project
   region      = var.region
-  credentials = file("terraform.json")
+  credentials = file(var.credentials)
 } 
 
 
