@@ -29,7 +29,7 @@ pipeline {
 			 }
 		 }
 	 }
-	    stage('Terraform apply') {
+	    stage('Terraform plan') {
 		 steps {  
 			  dir('terraform/gce')
 			 {
