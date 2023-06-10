@@ -52,7 +52,7 @@ pipeline {
 			 }
 		 }
 	 }
-	    stage('Initialize Terraform') {
+	    stage('Apply Terraform') {
 		 steps {  
 			  dir('terraform/gce')
 			 {
