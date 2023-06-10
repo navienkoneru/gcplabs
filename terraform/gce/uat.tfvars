@@ -1,4 +1,4 @@
-project = "uat-prjct"
+project = "mi-uat"
 
 region  = "us-central1"
 
