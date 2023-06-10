@@ -22,3 +22,7 @@ variable "zone" {
     type = string
     default = "us-central1-a"
 }
+
+variable "credentials" {
+  default = "terraform.json"
+}
