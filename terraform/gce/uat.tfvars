@@ -7,3 +7,5 @@ name = "terraform"
 machine_type = "e2-medium"
 
 zone = "us-central1-b"  
+
+credentials = "uat.json"
