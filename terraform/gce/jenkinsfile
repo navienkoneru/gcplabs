@@ -44,5 +44,13 @@ pipeline {
 			 }
 		 }
 	 }
+	    stage('Terraform plan') {
+		 steps {  
+			  dir('terraform/gce')
+			 {
+                sh 'terraform plan -var-file=dev.tfvars'
+			 }
+		 }
+	 }
 }
 }
