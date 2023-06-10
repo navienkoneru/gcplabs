@@ -17,10 +17,7 @@ resource "google_compute_instance" "vminstance" {
     }
   }
 
-  provisioner "local-exec" {
-    command = "gcloud compute instances create hello --zone us-central1-a"
-  }
-
+  
   network_interface {
     network = "default"
 
@@ -34,4 +31,9 @@ resource "google_compute_instance" "vminstance" {
 resource "google_compute_network" "my-network" {
   name = "terraform-network"
 }
+
+provisioner "local-exec" {
+    command = "gcloud compute instances create hello --zone us-central1-a"
+  }
+
 */
