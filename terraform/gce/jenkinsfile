@@ -33,7 +33,7 @@ pipeline {
 		 steps {  
 			  dir('terraform/gce')
 			 {
-                sh 'terraform plan -var-file=dev.tfvars'
+                sh 'terraform plan -var-file=$ENV.tfvars'
 			 }
 		 }
 	 }
@@ -41,7 +41,7 @@ pipeline {
 		 steps {  
 			  dir('terraform/gce')
 			 {
-                sh 'terraform $NAVEEN_ACTION --auto-approve -var-file=dev.tfvars'
+                sh 'terraform $NAVEEN_ACTION --auto-approve -var-file=$ENV.tfvars'
 			 }
 		 }
 	 }
