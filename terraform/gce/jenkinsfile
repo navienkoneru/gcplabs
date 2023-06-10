@@ -2,7 +2,9 @@ pipeline {
     agent any
 
     environment {
-    SVC_ACCOUNT_KEY = credentials('dev-auth')
+    DEV_SVC_ACCOUNT_KEY = credentials('dev-auth')
+    UAT_SVC_ACCOUNT_KEY = credentials('uat-auth')
+    PROD_SVC_ACCOUNT_KEY = credentials('prod-auth')
   }
   
   stages
@@ -14,8 +16,10 @@ pipeline {
                     def tfHome = tool name: 'Terraform'
                     env.PATH = "${tfHome}:${env.PATH}"
                 }
-                sh 'echo $SVC_ACCOUNT_KEY | base64 -d > ./terraform/gce/terraform.json'
-		            sh 'pwd'
+                sh 'echo $DEV_SVC_ACCOUNT_KEY | base64 -d > ./terraform/gce/dev.json'
+		sh 'echo $UAT_SVC_ACCOUNT_KEY | base64 -d > ./terraform/gce/uat.json'
+		sh 'echo $PROD_SVC_ACCOUNT_KEY | base64 -d > ./terraform/gce/prod.json'
+		sh 'pwd'
                 sh 'terraform --version'               
                
             }
