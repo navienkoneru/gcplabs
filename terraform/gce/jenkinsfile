@@ -44,11 +44,19 @@ pipeline {
 			 }
 		 }
 	 }
-	    stage('Terraform plan') {
+	    stage('Terraform apply') {
 		 steps {  
 			  dir('terraform/gce')
 			 {
                 sh 'terraform plan -var-file=dev.tfvars'
+			 }
+		 }
+	 }
+	    stage('Initialize Terraform') {
+		 steps {  
+			  dir('terraform/gce')
+			 {
+                sh 'terraform apply --auto-approve -var-file=dev.tfvars'
 			 }
 		 }
 	 }
