@@ -1,4 +1,4 @@
-project = "prjct-navi"
+project = "mi--dev"
 
 region  = "us-central1"
 
