@@ -1,0 +1,46 @@
+pipeline {
+    agent any
+
+    environment {
+    SVC_ACCOUNT_KEY = credentials('jenkins-auth')
+  }
+     
+    stages {
+      	stage('Set creds') {
+            steps {
+              
+                sh 'echo $SVC_ACCOUNT_KEY | base64 -d > ./jenkins.json'
+		        sh 'pwd'
+                       
+               
+            }
+        }
+
+	
+	stage('Auth-Project') {
+	 steps {
+    
+        sh 'gcloud auth activate-service-account jenkins@prjct-navi.iam.gserviceaccount.com --key-file=jenkins.json'
+    }
+	}
+	stage('Set Terraform path') {
+            steps {
+                script {
+                    def tfHome = tool name: 'Terraform'
+                    env.PATH = "${tfHome}:${env.PATH}"
+                }
+                sh 'echo $SVC_ACCOUNT_KEY | base64 -d > ./terraform/gce/terraform.json'
+		            sh 'pwd'
+                sh 'terraform --version'               
+               
+            }
+        }
+        
+         stage('Initialize Terraform') {
+		 steps {  
+			  dir('terraform/gce')
+			 {
+                sh 'terraform init'
+			 }
+		 }
+	 }
